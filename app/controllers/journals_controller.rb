@@ -17,6 +17,7 @@ class JournalsController < ApplicationController
   end
 
   private
+
   def set_journal
     @journal = Journal.find(params[:id])
   end
