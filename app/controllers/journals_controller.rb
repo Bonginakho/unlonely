@@ -1,5 +1,5 @@
 class JournalsController < ApplicationController
-  before_action :set_journal, only: %I[show edit update]
+  before_action :set_journal, only: %I[show edit update create]
 
   def show
   end
@@ -14,6 +14,11 @@ class JournalsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def create
+    @journal = journal.new(journal_params)
+    @journal.save
   end
 
   private
