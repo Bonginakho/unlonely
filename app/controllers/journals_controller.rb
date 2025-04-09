@@ -1,5 +1,5 @@
 class JournalsController < ApplicationController
-  before_action :set_journal, only: %I[show edit update]
+  before_action :set_journal, only: %I[show edit update create]
 
   def show
   end
@@ -16,7 +16,13 @@ class JournalsController < ApplicationController
     end
   end
 
+  def create
+    @journal = journal.new(journal_params)
+    @journal.save
+  end
+
   private
+
   def set_journal
     @journal = Journal.find(params[:id])
   end
