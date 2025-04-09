@@ -1,5 +1,5 @@
 .navbar-lewagon {
-  justify-content: space-between;
+  text-align: right;
   background: white;
 }
 
@@ -9,4 +9,22 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.common-button {
+  background-color: black;
+  border-radius: 6%;
+  margin: 0.5rem;
+}
+
+.common-button:hover {
+  background-color: white;
+  transition: 500ms ease;
+  color: black;
+}
+
+.common-button .nav-link {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
 }
