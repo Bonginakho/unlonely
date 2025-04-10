@@ -27,3 +27,6 @@ $border-radius-xl:            .5rem;
 $border-radius-xxl:           1rem;
 
 // Override other variables below!
+$modal-backdrop-bg:                 $black;
+$modal-content-border-color:        var(--#{$black}border-color-translucent);
+$modal-content-color:               var(--#{$black}body-color);
