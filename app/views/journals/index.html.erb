@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Unlonely</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_importmap_tags %>
-  </head>
-  <body>
-    <div id="my-vue-app">
-      <div class="container" id="journal-heading">
-        <h1> Week 1 Hello Strangers </h1>
-      </div>
-      <div v-for="journal in journals" :key="journal.id" class="text-container">
-        <p> {{journal.prompt}}</p>
-        <button class="journal-button" @click="toggleEdit(journal.id" > Write </button>
-        <div v-if="isEditing(journal.id)" >
-          <textarea v-model="journal.content" placeholder="Weekly writing"> </textarea>
-          <button class="journal-button" @click="saveContent(journal.id)"> Save </button>
-        </div>
-      </div>
+<div class="container" id="journal-heading">
+  <h1> Week 1 Hello Strangers </h1>
+</div>
+<% @journals.each do |journal| %>
+  <div class="text-container">
+    <p> <%= journal.prompt %></p>
+    <div id="journal-content">
+      <%= simple_form_for(journal) do |j| %>
+        <%= j.input :content, input_html: {class:"text-area"} %>
+        <%= j.submit "Write", class:"journal-button" %>
+      <% end %>
     </div>
-    <%= yield  %>
-  </body>
-</html>
+  </div>
+<% end %>
