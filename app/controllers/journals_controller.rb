@@ -3,6 +3,7 @@ class JournalsController < ApplicationController
 
   def index
     @journals = Journal.all
+    @ordered_journals = Journal.order(:id)
   end
 
   def show
@@ -14,9 +15,9 @@ class JournalsController < ApplicationController
   def update
     @journal.update(journals_params)
     if @journal.update(journals_params)
-      render json: @journal, status: :ok
+      redirect_to journals_path
     else
-      render json: @journal.errors, status: :unprocessable_entity
+      render status: :unprocessable_entity
     end
   end
 
