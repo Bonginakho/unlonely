@@ -12,4 +12,5 @@
 //= link @vue--shared.js
 //= link controllers/application.js
 //= link controllers/hello_controller.js
- //= link controllers/index.js
+//= link controllers/index.js
+//= link toggle_journal_form.js
