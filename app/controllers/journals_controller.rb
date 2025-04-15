@@ -1,5 +1,10 @@
 class JournalsController < ApplicationController
-  before_action :set_journal, only: %I[show edit update create]
+  before_action :set_journal, only: %I[show edit update]
+
+  def index
+    @journals = Journal.all
+    @ordered_journals = Journal.order(:id)
+  end
 
   def show
   end
@@ -9,10 +14,10 @@ class JournalsController < ApplicationController
 
   def update
     @journal.update(journals_params)
-    if @journal.save!
-      redirect_to journals_path(@journal)
+    if @journal.update(journals_params)
+      redirect_to journals_path
     else
-      render :new, status: :unprocessable_entity
+      render status: :unprocessable_entity
     end
   end
 
