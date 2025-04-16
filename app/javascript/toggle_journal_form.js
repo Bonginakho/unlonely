@@ -1,10 +1,13 @@
-const button = document.querySelector('.toggle-form-button');
-const form = document.getElementById("journal-form-container");
+const buttons = document.querySelectorAll('.toggle-form-button');
 
-button.addEventListener("click", (event) => {
-  console.log(event)
-  if (form.style.display === "none")
-    form.style.display = "block"
-  else
+buttons.forEach(button => {
+  button.addEventListener("click", (event) => {
+    const form = button.nextElementSibling;
+
+    console.log(event)
+    if (form.style.display === "none")
+      form.style.display = "block"
+    else
     form.style.display = "none"
-  })
+  });
+});
