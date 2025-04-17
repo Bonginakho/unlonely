@@ -6,11 +6,10 @@
     <p> <%= journal.prompt %></p>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
     <div class="journal-form-container" style="display: none;">
-      <%= simple_form_for(journal) do |j| %>
+      <%= simple_form_for(journal, html: { data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } }) do |j| %>
         <%= j.input :content, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' }   %>
         <%= j.submit "Save", class:"journal-button" %>
       <% end %>
     </div>
   </div>
 <% end %>
-
