@@ -1,16 +1,235 @@
 <div class="container" id="journal-heading">
   <h1> Week 1 Hello Strangers </h1>
 </div>
-<% @ordered_journals.each do |journal| %>
-  <div class="text-container">
+
+
+<div class="text-container">
+  <% @ordered_journals.each do |journal| %>
     <p> <%= journal.prompt %></p>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
+    <button class="btn btn-dark" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Weekly Ritual</button>
     <div class="journal-form-container" style="display: none;">
       <%= simple_form_for(journal) do |j| %>
         <%= j.input :content, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' }   %>
         <%= j.submit "Save", class:"journal-button" %>
       <% end %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Weekly Ritual</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Show a second modal and hide this one with the button below.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Process</button>
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal">Alignment</button>
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle4" data-bs-toggle="modal">Clarity</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Process</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>What is true about what I am feeling?</p>
+        <p>What actions are within my control?</p>
+        <p>Write your diary entry below:</p>
+        <form id="diaryFormProcess">
+          <div class="mb-3">
+            <label for="diaryInputProcess" class="form-label">Your Entry</label>
+            <textarea class="form-control" id="diaryInputProcess" rows="3" placeholder="Type your diary entry..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Entry</button>
+        </form>
+        <hr>
+        <h5>Previous Entries:</h5>
+        <ul id="entryListProcess" class="list-group"></ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel3">Alignment</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>How do I let the truth of what I am feeling, having let go of what is outside of my control, lead me today?</p>
+        <p>These are the steps I will bring me into alignment with what I want:</p>
+        <p>Write your diary entry below:</p>
+        <form id="diaryFormAlignment">
+          <div class="mb-3">
+            <label for="diaryInputAlignment" class="form-label">Your Entry</label>
+            <textarea class="form-control" id="diaryInputAlignment" rows="3" placeholder="Type your diary entry..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Entry</button>
+        </form>
+        <hr>
+        <h5>Previous Entries:</h5>
+        <ul id="entryListAlignment" class="list-group"></ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModalToggle4" aria-hidden="true" aria-labelledby="exampleModalToggleLabel4" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel4">Clarity</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>What is in my mind?</p>
+        <p>Don't overthink here. Just write down whatever is in your mind as you start your morning. Whatever you're into. Don't judge it. Just let whatever comes up make its way onto the page.</p>
+        <p>Write your diary entry below:</p>
+        <form id="diaryFormClarity">
+          <div class="mb-3">
+            <label for="diaryInputClarity" class="form-label">Your Entry</label>
+            <textarea class="form-control" id="diaryInputClarity" rows="3" placeholder="Type your diary entry..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save Entry</button>
+        </form>
+        <hr>
+        <h5>Previous Entries:</h5>
+        <ul id="entryListClarity" class="list-group"></ul>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+      </div>
+    </div>
+  </div>
+</div>
+<button class="btn btn-light" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Weekly Ritual</button>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script>
+  let currentEditIndexProcess = null;
+  let currentEditIndexAlignment = null;
+  let currentEditIndexClarity = null;
+
+  // Load previous entries from local storage
+  document.addEventListener('DOMContentLoaded', function() {
+      loadEntries();
+  });
+
+  // Load entries for each section
+  function loadEntries() {
+      loadEntriesForSection('Process');
+      loadEntriesForSection('Alignment');
+      loadEntriesForSection('Clarity');
+  }
+
+  function loadEntriesForSection(section) {
+      const entries = JSON.parse(localStorage.getItem(`diaryEntries${section}`)) || [];
+      const entryList = document.getElementById(`entryList${section}`);
+      entryList.innerHTML = ''; // Clear the list before loading
+      entries.forEach((entry, index) => {
+          const li = document.createElement('li');
+          li.className = 'list-group-item d-flex justify-content-between align-items-center';
+          li.textContent = entry;
+
+          // Edit button
+          const editButton = document.createElement('button');
+          editButton.className = 'btn btn-warning btn-sm';
+          editButton.textContent = 'Edit';
+          editButton.onclick = () => editEntry(section, index);
+          li.appendChild(editButton);
+
+          // Delete button
+          const deleteButton = document.createElement('button');
+          deleteButton.className = 'btn btn-danger btn-sm';
+          deleteButton.textContent = 'Delete';
+          deleteButton.onclick = () => deleteEntry(section, index);
+          li.appendChild(deleteButton);
+
+          entryList.appendChild(li);
+      });
+  }
+
+  // Handle form submission for Process
+  document.getElementById('diaryFormProcess').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      const diaryText = document.getElementById('diaryInputProcess').value;
+      saveEntry('Process', diaryText);
+  });
+
+  // Handle form submission for Alignment
+  document.getElementById('diaryFormAlignment').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+              const diaryText = document.getElementById('diaryInputAlignment').value;
+      saveEntry('Alignment', diaryText);
+  });
+
+  // Handle form submission for Clarity
+  document.getElementById('diaryFormClarity').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      const diaryText = document.getElementById('diaryInputClarity').value;
+      saveEntry('Clarity', diaryText);
+  });
+
+  // Save entry to local storage
+  function saveEntry(section, diaryText) {
+      const entries = JSON.parse(localStorage.getItem(`diaryEntries${section}`)) || [];
+      if (section === 'Process' && currentEditIndexProcess !== null) {
+          // Update existing entry
+          entries[currentEditIndexProcess] = diaryText;
+          currentEditIndexProcess = null; // Reset edit index
+      } else if (section === 'Alignment' && currentEditIndexAlignment !== null) {
+          // Update existing entry
+          entries[currentEditIndexAlignment] = diaryText;
+          currentEditIndexAlignment = null; // Reset edit index
+      } else if (section === 'Clarity' && currentEditIndexClarity !== null) {
+          // Update existing entry
+          entries[currentEditIndexClarity] = diaryText;
+          currentEditIndexClarity = null; // Reset edit index
+      } else {
+          // Add new entry
+          entries.push(diaryText);
+      }
+      localStorage.setItem(`diaryEntries${section}`, JSON.stringify(entries));
+      loadEntriesForSection(section); // Refresh the entry list
+      document.getElementById(`diaryInput${section}`).value = ''; // Clear the input field
+  }
+
+  // Edit entry
+  function editEntry(section, index) {
+      const entries = JSON.parse(localStorage.getItem(`diaryEntries${section}`)) || [];
+      document.getElementById(`diaryInput${section}`).value = entries[index]; // Populate input for editing
+      if (section === 'Process') {
+          currentEditIndexProcess = index; // Set the current edit index
+      } else if (section === 'Alignment') {
+          currentEditIndexAlignment = index; // Set the current edit index
+      } else if (section === 'Clarity') {
+          currentEditIndexClarity = index; // Set the current edit index
+      }
+  }
+
+  // Delete entry
+  function deleteEntry(section, index) {
+      const entries = JSON.parse(localStorage.getItem(`diaryEntries${section}`)) || [];
+      entries.splice(index, 1); // Remove the entry from the array
+      localStorage.setItem(`diaryEntries${section}`, JSON.stringify(entries)); // Update local storage
+      loadEntriesForSection(section); // Refresh the entry list
+  }
+</script>
