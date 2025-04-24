@@ -1,3 +1,3 @@
 class Reflection < ApplicationRecord
-  belongs_to :journals
+  belongs_to :journal
 end
