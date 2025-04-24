@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root to: "pages#home"
   resources :journals, only: %I[index new create edit update show]
   resources :reflections, only: %I[edit update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -9,6 +11,4 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  root to: "pages#home"
-  devise_for :users
 end
