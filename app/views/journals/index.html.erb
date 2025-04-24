@@ -8,11 +8,23 @@
     <p> <%= journal.prompt %></p>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
     <div class="journal-form-container" style="display: none;">
-      <%= simple_form_for(journal) do |j| %>
+      <%= simple_form_for(journal)  do |j| %>
         <%= j.input :content, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' }   %>
         <%= j.submit "Save", class:"journal-button" %>
       <% end %>
     </div>
+
+    <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px"> Reflections </button>
+    <div class="container" style="margin-left: 0; margin-bottom: 4px; display: none;">
+      <%= journal.reflection.title %>
+      <%= simple_form_for(journal.reflection)  do |j| %>
+        <%= j.input :writing, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' }   %>
+        <%= j.submit "Save", class:"journal-button" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
   <% end %>
 </div>
 
@@ -232,3 +244,4 @@
       loadEntriesForSection(section); // Refresh the entry list
   }
 </script>
+

@@ -14,3 +14,5 @@
 //= link controllers/hello_controller.js
 //= link controllers/index.js
 //= link toggle_journal_form.js
+//= link toggle_reflection.js
+//=link reset_controller.js
