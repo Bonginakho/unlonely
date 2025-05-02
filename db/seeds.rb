@@ -9,6 +9,7 @@
 #   end
 puts "Cleaning database"
 User.destroy_all
+Reflection.destroy_all
 Journal.destroy_all
 
 User.create([
@@ -21,7 +22,7 @@ User.create([
 puts "Created #{User.count} users."
 
 journals = Journal.create!([
-  { prompt: "You are your biggest project. Serving you serves the world. But we are not made to do this life thing alone. So let us start small.Week 1 begins with saying hello to strangers. I know it feels akward but the exchange will leave you and them feeling strangely more connected."},
+  { prompt: "You are your biggest project. Serving you serves the world. But we are not made to do this life thing alone. So let us start small. Week 1 begins with saying hello to strangers. I know it feels akward but the exchange will leave you and them feeling strangely more connected."},
   { prompt: "Now that you are a little comfortable with chit-chat. Let’s crank it up a notch. What experiences brings you joy? Week 2 begins with listing every activity or experience that brings you joy. However big or small just jot them down throughout the week as they come to you."},
   { prompt: "Now that we have our joy-bringers it is time to share them with others. You decide who you would like to invite to do the activity with you. It can be a friend, an acquaintance, family member or your partner, potential or otherwise. There are no limits here, but I am guessing one is going to be hard enough so let us start with that. Write down who you chose. Reach out and invite them. If they say no ask someone else. I promise the no’s won’t kill you."},
   { prompt: "Now that you are sharing your joy. Let us work on anything that is coming up for you as you engage with people on this human experience called life. Which experience from week 3 comes up and what about it feels so emotionally charged? Notice it and write it down.Getting triggered? It’s normal it just means your healing is still in progress just like the rest of us."},
@@ -62,7 +63,7 @@ reflections_array = [
   {title:"How has your life being shaped this week? What has it taken to bring together your most sacred parts of yourself face-to-face with the volatility of human emotions? What does it really mean for you to belong to yourself and to be part of something greater than you? The breadth of human experience is found in exploring all the different ways we can be connected to each other without losing ourselves in the process.
      Celebrate yourself now. Everything you have survived has led you here. And you never left you, no matter how hard it got. You were there for yourself when no one else was . If that is not victory, then I don’t know what it is.
      Manifesting main character energy." },
-  {title:" Whenever you find yourself, going back into old past  behaviours that once kept you lonely. Come back to this workbook. Look at where you started, sit though the messiness of the middle and flip through until the end. Marvel at the journey you have had, the times you felt uncomfortable and challenged past what you believed was possible. Call home to the experiences, activities, people and spaces that made you feel the most connected. Drink that in, and keep intentionally surrounding yourself with authentic community. Please stay UN-LONELY. I love you.
+  {title:" Whenever you find yourself, going back to old past  behaviours that once kept you lonely. Come back to this workbook. Look at where you started, sit though the messiness of the middle and flip through until the end. Marvel at the journey you have had, the times you felt uncomfortable and challenged past what you believed was possible. Call home to the experiences, activities, people and spaces that made you feel the most connected. Drink that in, and keep intentionally surrounding yourself with authentic community. Please stay UN-LONELY. I love you.
     Write down new thought patterns you will say back to yourself when you need reinforcement or simply when you need a  reminder, of just how remarkable your life  can be when you are socially connected.
     “Veni, Vedi, Amavi.” - “We came, we saw, we loved." }
                 ]
