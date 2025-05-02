@@ -1,10 +1,8 @@
 <div class="container" id="journal-heading">
   <h1> Week 1 Hello Strangers </h1>
 </div>
-
-
-<div class="text-container">
-  <% @ordered_journals.each do |journal| %>
+<% @ordered_journals.each do |journal| %>
+  <div class="text-container">
     <p> <%= journal.prompt %></p>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
     <button class="btn btn-dark" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Weekly Ritual</button>
@@ -14,7 +12,6 @@
         <%= j.submit "Save", class:"journal-button" %>
       <% end %>
     </div>
-
     <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px"> Reflections </button>
     <!--<div class="container" style="margin-left: 0; margin-bottom: 4px; display: none;">-->
       <%#= journal.reflection.title %>

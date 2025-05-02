@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :journals, only: %I[index new create edit update show]
-  resources :reflections, only: %I[edit update]
+  resources :reflections, only: %I[edit update]\
+
+  get "originstory", to: "pages#originstory"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
