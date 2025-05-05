@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag 'custom', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_importmap_tags %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       .modal-content {
@@ -32,7 +33,6 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-
     <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -152,71 +152,73 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
-      let currentEditIndex = null;
-
-      // Load previous entries from local storage
-      document.addEventListener('DOMContentLoaded', function() {
-        loadEntries();
-      });
-
-      function loadEntries() {
-        const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
-        const entryList = document.getElementById('entryList');
-        entryList.innerHTML = ''; // Clear the list before loading
-        entries.forEach((entry, index) => {
-          const li = document.createElement('li');
-          li.className = 'list-group-item d-flex justify-content-between align-items-center';
-          li.textContent = entry;
-
-          // Edit button
-          const editButton = document.createElement('button');
-          editButton.className = 'btn btn-warning btn-sm';
-          editButton.textContent = 'Edit';
-          editButton.onclick = () => editEntry(index);
-          li.appendChild(editButton);
-
-          // Delete button
-          const deleteButton = document.createElement('button');
-          deleteButton.className = 'btn btn-danger btn-sm';
-          deleteButton.textContent = 'Delete';
-          deleteButton.onclick = () => deleteEntry(index);
-          li.appendChild(deleteButton);
-
-          entryList.appendChild(li);
-        });
+      if (typeof currentEditIndex === 'undefined') {
+       let currentEditIndex = null;
       }
 
-      // Handle form submission
-      document.getElementById('diaryForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
-        const diaryText = document.getElementById('diaryInput').value;
+            // Load previous entries from local storage
+            document.addEventListener('DOMContentLoaded', function() {
+       loadEntries();
+            });
 
-        const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
-        if (currentEditIndex !== null) {
-          // Update existing entry
-          entries[currentEditIndex] = diaryText;
-          currentEditIndex = null; // Reset edit index
-        } else {
-          // Add new entry
-          entries.push(diaryText);
-        }
-        localStorage.setItem('diaryEntries', JSON.stringify(entries));
-        loadEntries(); // Refresh the entry list
-        document.getElementById('diaryInput').value = ''; // Clear the input field
-      });
+            function loadEntries() {
+       const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+       const entryList = document.getElementById('entryList');
+       entryList.innerHTML = ''; // Clear the list before loading
+       entries.forEach((entry, index) => {
+         const li = document.createElement('li');
+         li.className = 'list-group-item d-flex justify-content-between align-items-center';
+         li.textContent = entry;
 
-      function editEntry(index) {
-        const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
-        document.getElementById('diaryInput').value = entries[index]; // Populate input for editing
-        currentEditIndex = index; // Set the current edit index
-      }
+         // Edit button
+         const editButton = document.createElement('button');
+         editButton.className = 'btn btn-warning btn-sm';
+         editButton.textContent = 'Edit';
+         editButton.onclick = () => editEntry(index);
+         li.appendChild(editButton);
 
-      function deleteEntry(index) {
-        const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
-        entries.splice(index, 1); // Remove the entry from the array
-        localStorage.setItem('diaryEntries', JSON.stringify(entries)); // Update local storage
-        loadEntries(); // Refresh the entry list
-      }
+         // Delete button
+         const deleteButton = document.createElement('button');
+         deleteButton.className = 'btn btn-danger btn-sm';
+         deleteButton.textContent = 'Delete';
+         deleteButton.onclick = () => deleteEntry(index);
+         li.appendChild(deleteButton);
+
+         entryList.appendChild(li);
+       });
+            }
+
+            // Handle form submission
+            document.getElementById('diaryForm').addEventListener('submit', function(event) {
+       event.preventDefault(); // Prevent the default form submission
+       const diaryText = document.getElementById('diaryInput').value;
+
+       const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+       if (currentEditIndex !== null) {
+         // Update existing entry
+         entries[currentEditIndex] = diaryText;
+         currentEditIndex = null; // Reset edit index
+       } else {
+         // Add new entry
+         entries.push(diaryText);
+       }
+       localStorage.setItem('diaryEntries', JSON.stringify(entries));
+       loadEntries(); // Refresh the entry list
+       document.getElementById('diaryInput').value = ''; // Clear the input field
+            });
+
+            function editEntry(index) {
+       const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+       document.getElementById('diaryInput').value = entries[index]; // Populate input for editing
+       currentEditIndex = index; // Set the current edit index
+            }
+
+            function deleteEntry(index) {
+       const entries = JSON.parse(localStorage.getItem('diaryEntries')) || [];
+       entries.splice(index, 1); // Remove the entry from the array
+       localStorage.setItem('diaryEntries', JSON.stringify(entries)); // Update local storage
+       loadEntries(); // Refresh the entry list
+            }
     </script>
     <%= javascript_include_tag 'toggle_journal_form' %>
     <%= javascript_include_tag 'toggle_reflection' %>
