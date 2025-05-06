@@ -1,0 +1,23 @@
+input[type="checkbox"].check-box {
+  all: unset;
+  display: inline-grid;
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  border: 2px solid #333;
+  border-radius: 0.2em;
+  place-content: center;
+}
+
+input[type="checkbox"].check-box::before {
+  content: "";
+  display: block;
+  width: 0.6em;
+  height: 0.6em;
+  background-color: currentColor;
+  transform: scale(0);
+  transition: transform 120ms ease-in-out;
+}
+input[type="checkbox"].check-box:checked::before {
+  transform: scale(1);
+}

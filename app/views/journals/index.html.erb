@@ -1,21 +1,20 @@
-<div class="container" id="journal-heading">
+<div class="container align-text-center" id="journal-heading">
   <h1> Week 1 Hello Strangers </h1>
 </div>
 <% @ordered_journals.each_with_index do |journal, index| %>
   <div class="text-container">
     <p> <%= journal.prompt %></p>
     <% if index == 0 %>
-      <div class="container">
-        <form>
-          <p><input type="checkbox" name="days" id="monday"><label for="monday">Monday</label></p>
-          <p><input type="checkbox" name="days" id="tuesday"><label for="tuesday">Tuesday</label></p>
-          <p><input type="checkbox" name="days" id="wednesday"><label for="wednesday">Wednesday</label></p>
-          <p><input type="checkbox" name="days" id="thursday"><label for="thursday">Thursday</label></p>
-          <p><input type="checkbox" name="days" id="friday"><label for="friday">Friday</label></p>
-          <p><input type="checkbox" name="days" id="saturday"><label for="saturday">Saturday</label></p>
-          <p><input type="checkbox" name="days" id="sunday"><label for="sunday">Sunday</label></p>
-        </form>
-      </div>
+      <p> Go through the week and tick the box for each day you say hello to a stranger.</p>
+      <form>
+        <p><input type="checkbox" id="monday" name="days" class="check-box"><label for="Monday">Monday</label></p>
+        <p><input type="checkbox" id="tuesday" name="days" class="check-box"><label for="Tuesday">Tuesday</label></p>
+        <p><input type="checkbox" id="wednesday" name="days" class="check-box"><label for="Wednesday">Wednesday</label></p>
+        <p><input type="checkbox" id="thursday" name="days" class="check-box"><label for="Thursday">Thursday</label></p>
+        <p><input type="checkbox" id="friday" name="days" class="check-box"><label for="Friday">Friday</label></p>
+        <p><input type="checkbox" id="saturday" name="days" class="check-box"><label for="Saturday">Saturday</label></p>
+        <p><input type="checkbox" id="sunday" name="days" class="check-box"><label for="Sunday">Sunday</label></p>
+      </form>
     <% end %>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
     <div class="journal-form-container" style="display: none;">
