@@ -1,9 +1,22 @@
 <div class="container" id="journal-heading">
   <h1> Week 1 Hello Strangers </h1>
 </div>
-<% @ordered_journals.each do |journal| %>
+<% @ordered_journals.each_with_index do |journal, index| %>
   <div class="text-container">
     <p> <%= journal.prompt %></p>
+    <% if index == 0 %>
+      <div class="container">
+        <form>
+          <p><input type="checkbox" name="days" id="monday"><label for="monday">Monday</label></p>
+          <p><input type="checkbox" name="days" id="tuesday"><label for="tuesday">Tuesday</label></p>
+          <p><input type="checkbox" name="days" id="wednesday"><label for="wednesday">Wednesday</label></p>
+          <p><input type="checkbox" name="days" id="thursday"><label for="thursday">Thursday</label></p>
+          <p><input type="checkbox" name="days" id="friday"><label for="friday">Friday</label></p>
+          <p><input type="checkbox" name="days" id="saturday"><label for="saturday">Saturday</label></p>
+          <p><input type="checkbox" name="days" id="sunday"><label for="sunday">Sunday</label></p>
+        </form>
+      </div>
+    <% end %>
     <button class="toggle-form-button journal-button margin-top"> Write </button>
     <div class="journal-form-container" style="display: none;">
       <%= simple_form_for(journal)  do |j| %>
