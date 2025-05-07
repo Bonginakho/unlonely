@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :reflections, only: %I[edit update]
   resources :chat_messages, only: [:index, :create]
 
+
   get "originstory", to: "pages#originstory"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
