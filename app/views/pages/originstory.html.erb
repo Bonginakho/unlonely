@@ -1,2 +1,44 @@
-<h1> The Origin Story </h1>
+<%= stylesheet_link_tag "originstory" %>
 
+<div class="container origin-story">
+  <h1>The Origin Story</h1>
+</div>
+
+<div class="container origin-body">
+  <div class="row align-items-center">
+    <div class="col-md-8">
+      <h3>
+        The workbook is a collection of actions, thoughts and
+        processes that pulled me out of a life of loneliness and
+        brought me into a life of love, joy and community. I love
+        solitude and I am a firm believer in being able to truly sit
+        and be honest with ourselves. Only when we are honest
+        with who we are, where we have been and what we
+        want, can we be honest with others. And it becomes a
+        ripple effect. Your life then becomes an invitation to
+        everyone around you to live out their truth. But I promise
+        a life lived with others is so much better than one
+        without. I hope this workbook makes you uncomfortable,
+        that it challenges you and transforms you from lonely to
+        UN-lonely. Embrace the chaos that always precedes
+        change and get into beautiful communities.
+        <br>
+        <br/>
+        <strong>All my love, The Zulu Scribe</strong>
+      </h3>
+    </div>
+
+    <div class="col-md-4">
+      <%= image_tag "Turkey.jpg",
+          alt: "Origin picture",
+          class: "img-fluid" %>
+    </div>
+  </div>
+</div>
+
+<div class="container footer">
+  <%= link_to "Back to journals",
+      journals_path,
+      class: "journal-button",
+      style: "display: inline-block; padding: 10px 20px;" %>
+</div>
