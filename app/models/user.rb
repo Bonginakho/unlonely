@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :journals
+  has_many :sent_chat_messages, class_name: "ChatMessage", foreign_key: :user_id
+  has_many :received_chat_messages, class_name: "ChatMessage", foreign_key: :receiver_id
 end
