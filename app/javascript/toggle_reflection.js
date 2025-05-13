@@ -1,13 +1,11 @@
-const reflections = document.querySelectorAll('.reflection-container')
+(() => {
+  const reflections = document.querySelectorAll('.reflection-container');
 
-reflections.forEach(reflection => {
-  reflection.addEventListener("click", (event) => {
-    console.log(event)
-    const form = reflection.nextElementSibling;
-    if (form.style.display == "none") {
-      form.style.display = "block"
-    } else {
-      form.style.display = "none"
-    }
-  })
-})
+  reflections.forEach(reflection => {
+    reflection.addEventListener("click", (event) => {
+      console.log(event);
+      const form = reflection.nextElementSibling;
+      form.style.display = (form.style.display === "none") ? "block" : "none";
+    });
+  });
+})();
