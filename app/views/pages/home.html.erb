@@ -1,2 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container home-heading d-flex flex-column align-items-center justify-content-center text-center"">
+  <h1 id="home"> The Un-lonely Project </h1>
+  <h2 id="home-body"> By the Zulu Scribe </h2>
+  <%= link_to "Get Unlonely",
+      journals_path,
+      id: "get-unlonely-button",
+      style: "display: inline-block;" %>
+</div>
