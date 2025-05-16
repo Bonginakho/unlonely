@@ -1,9 +1,8 @@
 class ChatMessagesController < ApplicationController
   before_action :authenticate_user!
 
-
   def index
-    Rails.logger.debug(params.inspect)
+    if params[:user_id].present?
     @chat_partner = User.find(params[:user_id])
 
     @chat_messages = ChatMessage.where(
@@ -12,13 +11,14 @@ class ChatMessagesController < ApplicationController
     ).order(:created_at)
 
     @chat_message = ChatMessage.new
+  else
+    @chat_partner = nil
+    @chat_messages = []
+  end
   end
 
   def create
-    # Set the sender to the current user
-    @chat_message = ChatMessage.new(chat_message_params)
-    @chat_message.user = current_user  # Set the sender to the current user
-
+    @chat_message = current_user.sent_chat_messages.build(chat_message_params)
     if @chat_message.save
       [@chat_message.user_id, @chat_message.receiver_id].each do |user_id|
         Turbo::StreamsChannel.broadcast_append_to(
