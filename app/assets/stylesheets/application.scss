@@ -10,13 +10,14 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/home";
 @import "components/checkbox";
 
 .margin-top {
   margin-top: 20px;
 }
 
-h1 {
-  font-size: 5.5rem;
-  font-weight: 600;
-}
+  h1 {
+    font-size: 5.5rem;
+    font-weight: 600;
+  }
