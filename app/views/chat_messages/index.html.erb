@@ -23,8 +23,8 @@
 
   <%= form_with url: chat_messages_path, method: :get, local: true do |form| %>
     <%= form.label :user_id, "Select User to Chat With:" %>
-    <%#= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :name, prompt: "Choose a user" %>
-<!---->    <%= form.submit "Start Chat", class: "btn btn-primary", style: "margin-top: 10px;" %>
+    <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, prompt: "Choose a user" %>
+    <%= form.submit "Start Chat", class: "btn btn-primary", style: "margin-top: 10px;" %>
   <% end %>
 <% end %>
 
