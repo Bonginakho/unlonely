@@ -1,0 +1,77 @@
+<% if @chat_partner %>
+  <h2>Chat with <%= @chat_partner.username %></h2>
+
+  <div id="chat_messages" style="max-height: 400px; overflow-y: auto; border: 2px solid #333; padding: 10px; border-radius: 10px;">
+    <%= turbo_frame_tag "chat_messages" do %>
+      <%= render @chat_messages %>
+    <% end %>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <%= turbo_frame_tag "new_chat_message" do %>
+      <%= simple_form_for @chat_message, url: chat_messages_path, data: { turbo: true }, html: { id: "new_chat_message_form" } do |f| %>
+        <%= f.hidden_field :receiver_id, value: @chat_partner.id %>
+        <%= f.input :content, label: false, input_html: { autocomplete: "off", placeholder: "Type your message...", style: 'width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;' } %>
+        <%= f.button :submit, "Send", class: "btn btn-primary", style: "margin-top: 5px;" %>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <h2>You don't have a chat partner yet.</h2>
+
+  <p>Start a new chat by selecting a user below:</p>
+
+  <%= form_with url: chat_messages_path, method: :get, local: true do |form| %>
+    <%= form.label :user_id, "Select User to Chat With:" %>
+    <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, prompt: "Choose a user" %>
+    <%= form.submit "Start Chat", class: "btn btn-primary", style: "margin-top: 10px;" %>
+  <% end %>
+<% end %>
+
+<style>
+  #chat_messages .chat_message {
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 15px;
+    max-width: 60%;
+    clear: both;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  #chat_messages .chat_message.sent {
+    background-color: #dcf8c6;
+    float: right;
+  }
+  #chat_messages .chat_message.received {
+    background-color: #fff;
+    float: left;
+    border: 1px solid #ccc;
+  }
+  form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+  form select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const chatMessagesDiv = document.getElementById("chat_messages");
+    if (chatMessagesDiv) {
+      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+  });
+
+  document.addEventListener("turbo:frame-load", (event) => {
+    if (event.target.id === "chat_messages") {
+      event.target.scrollTop = event.target.scrollHeight;
+    }
+  });
+</script>
