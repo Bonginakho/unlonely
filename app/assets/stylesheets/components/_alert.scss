@@ -1,6 +1,22 @@
-.alert {
+.alert-custom {
   position: fixed;
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  border-radius: 5px;
+  max-width:500px;
+  background-color: white !important;
+  color: black !important;
+  padding: 22px !important;
+  display: inline-block;
+  margin: 32px;
+}
+
+.alert button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+.alert {
+  position: relative;
 }
