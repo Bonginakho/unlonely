@@ -1,6 +1,8 @@
 <% if notice %>
-  <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <div class="alert alert-info alert-dismissible fade show alert-custom position-relative pe-5" role="alert">
+    <button type="button" class="btn p-0 border-0 bg-transparent position-absolute end-0 me-3" data-bs-dismiss="alert" aria-label="Close">
+      <i class="fa-solid fa-xmark" style="font-size: 1.2rem; color: black;"></i>
+    </button>
     <%= notice %>
   </div>
 <% end %>
