@@ -1,18 +1,35 @@
 .sign-in {
   background-color: white;
-  border: 3px solid red;
   color: black;
   padding: 27px;
   font-weight: 500;
+   margin-top: 1rem !important;
 }
 
 .log-in {
-  border: 3px solid blue;
   margin-top: 40px;
-  padding-bottom: 30px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 15px;
+  padding: 10px;
 }
 
 .log-in img {
   border-radius: 50%;
+  height: 150px;
+  margin-top: 10px;
+  display: block;
+}
+
+.log-in h1 {
+  font-weight: 800;
+  font-size: 80px;
+}
+
+.sign-in .journal-button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-align: center;
 }
