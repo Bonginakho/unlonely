@@ -4,6 +4,7 @@ class JournalsController < ApplicationController
   def index
     @journals = Journal.all
     @ordered_journals = Journal.order(:id)
+    @grouped_journals = @ordered_journals.group_by(&:week)
   end
 
   def show
