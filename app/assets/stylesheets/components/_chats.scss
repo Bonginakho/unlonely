@@ -28,12 +28,18 @@
     border-radius: 6px;
     border: 1px solid #ccc;
   }
+
 .chat-container {
-  display: none;
+  // display: none;
   background-color: white;
   color: black;
-  width: auto;
   margin-left: 20px;
+  padding: 20px;
+  bottom: 35px;
+  right: 35px;
+  position: fixed;
+  z-index: 1;
+  width: fit-content;
 }
 
 .fa-comment {
@@ -52,4 +58,5 @@
   bottom: 35px;
   right: 35px;
   position: fixed;
+  z-index: 2;
 }
