@@ -5,6 +5,20 @@ class JournalsController < ApplicationController
     @journals = Journal.all
     @ordered_journals = Journal.order(:id)
     @grouped_journals = @ordered_journals.group_by(&:week)
+
+    if params[:user_id].present?
+      @chat_partner = User.find(params[:user_id])
+
+      @chat_messages = ChatMessage.where(
+        "(user_id = ? AND receiver_id = ?) OR (user_id = ? AND receiver_id = ?)",
+        current_user.id, @chat_partner.id, @chat_partner.id, current_user.id
+      ).order(:created_at)
+
+      @chat_message = ChatMessage.new
+    else
+      @chat_partner = nil
+      @chat_messages = []
+    end
   end
 
   def show

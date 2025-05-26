@@ -230,15 +230,17 @@
       <p><%= journal.prompt %></p>
       <% if week_idx.zero? && journal_idx.zero? %>
         <p>Go through the week and tick the box for each day you say hello to a stranger.</p>
-        <form>
-          <p><input type="checkbox" id="monday"   name="days" class="check-box"><label for="Monday">Monday</label></p>
-          <p><input type="checkbox" id="tuesday"  name="days" class="check-box"><label for="Tuesday">Tuesday</label></p>
-          <p><input type="checkbox" id="wednesday"name="days" class="check-box"><label for="Wednesday">Wednesday</label></p>
-          <p><input type="checkbox" id="thursday" name="days" class="check-box"><label for="Thursday">Thursday</label></p>
-          <p><input type="checkbox" id="friday"   name="days" class="check-box"><label for="Friday">Friday</label></p>
-          <p><input type="checkbox" id="saturday" name="days" class="check-box"><label for="Saturday">Saturday</label></p>
-          <p><input type="checkbox" id="sunday"   name="days" class="check-box"><label for="Sunday">Sunday</label></p>
-        </form>
+        <div class="day-checklist">
+          <form>
+            <p><input type="checkbox" id="monday"   name="days" class="check-box"><label for="Monday">Monday</label></p>
+            <p><input type="checkbox" id="tuesday"  name="days" class="check-box"><label for="Tuesday">Tuesday</label></p>
+            <p><input type="checkbox" id="wednesday"name="days" class="check-box"><label for="Wednesday">Wednesday</label></p>
+            <p><input type="checkbox" id="thursday" name="days" class="check-box"><label for="Thursday">Thursday</label></p>
+            <p><input type="checkbox" id="friday"   name="days" class="check-box"><label for="Friday">Friday</label></p>
+            <p><input type="checkbox" id="saturday" name="days" class="check-box"><label for="Saturday">Saturday</label></p>
+            <p><input type="checkbox" id="sunday"   name="days" class="check-box"><label for="Sunday">Sunday</label></p>
+          </form>
+        </div>
       <% end %>
       <button class="toggle-form-button journal-button margin-top">Write</button>
       <div class="journal-form-container" style="display: none">
@@ -258,3 +260,50 @@
     </div>
   <% end %>
 <% end %>
+<!--start with chat messages at the bottom to see the layout-->
+<div class="chat-icon">
+  <div class="chat-bubble">
+    <i class="fa-solid fa-comment"></i>
+  </div>
+  <div class="container chat-container">
+    <% if @chat_partner %>
+      <h2>Chat with <%= @chat_partner.username %></h2>
+      <div id="chat_messages" style="max-height: 400px; overflow-y: auto; border: 2px solid #333; padding: 10px; border-radius: 10px;">
+        <%= turbo_frame_tag "chat_messages" do %>
+          <%= render @chat_messages %>
+        <% end %>
+      </div>
+      <div style="margin-top: 10px;">
+        <%= turbo_frame_tag "new_chat_message" do %>
+          <%= simple_form_for @chat_message, url: chat_messages_path, data: { turbo: true }, html: { id: "new_chat_message_form" } do |f| %>
+            <%= f.hidden_field :receiver_id, value: @chat_partner.id %>
+            <%= f.input :content, label: false, input_html: { autocomplete: "off", placeholder: "Type your message...", style: 'width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;' } %>
+            <%= f.button :submit, "Send", class: "btn btn-primary", style: "margin-top: 5px;" %>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <h2>You don't have a chat partner yet.</h2>
+      <p>Start a new chat by selecting a user below:</p>
+      <%= form_with url: chat_messages_path, method: :get, local: true do |form| %>
+        <%= form.label :user_id, "Select User to Chat With:" %>
+        <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, prompt: "Choose a user" %>
+        <%= form.submit "Start Chat", class: "btn btn-primary", style: "margin-top: 10px;" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<script>
+  document.addEventListener("turbo:load", () => {
+    const chatMessagesDiv = document.getElementById("chat_messages");
+    if (chatMessagesDiv) {
+      chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
+    }
+  });
+
+  document.addEventListener("turbo:frame-load", (event) => {
+    if (event.target.id === "chat_messages") {
+      event.target.scrollTop = event.target.scrollHeight;
+    }
+  });
+</script>

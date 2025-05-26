@@ -11,10 +11,10 @@ class ChatMessagesController < ApplicationController
     ).order(:created_at)
 
     @chat_message = ChatMessage.new
-  else
+    else
     @chat_partner = nil
     @chat_messages = []
-  end
+    end
   end
 
   def create
