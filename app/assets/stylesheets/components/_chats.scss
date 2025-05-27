@@ -30,11 +30,10 @@
   }
 
 .chat-container {
-  // display: none;
   background-color: white;
   color: black;
   margin-left: 20px;
-  padding: 20px;
+  padding: 35px;
   bottom: 35px;
   right: 35px;
   position: fixed;
@@ -60,6 +59,7 @@
   right: 35px;
   position: fixed;
   z-index: 2;
+  margin: 4px;
 }
 
 .logo-and-title{

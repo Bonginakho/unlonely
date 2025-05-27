@@ -264,12 +264,12 @@
 <div class="chat-bubble" id="chat-button">
   <i class="fa-solid fa-comment"></i>
 </div>
-<div class="chat-container" id="chat-box">
+<div class="chat-container" id="chat-box" style="display: none;">
   <div class="logo-and-title">
     <%= image_tag "unlonely.png", class: "avatar-large", alt: "logo"%>
     <div class="title-text">
       <h2> Get Connected </h2>
-      <p> You are worthy of knowing </p>
+      <p> You are worthy of knowing. </p>
     </div>
   </div>
   <div class="chat-content">
@@ -290,10 +290,9 @@
         <% end %>
       </div>
     <% else %>
-      <h2>You don't have a chat partner yet.</h2>
-      <p>Start a new chat by selecting a user below:</p>
+      <p> Speak your truth and allow others to speak theirs. </p>
       <%= form_with url: chat_messages_path, method: :get, local: true do |form| %>
-        <%= form.label :user_id, "Select User to Chat With:" %>
+        <%= form.label :user_id, "Choose someone to connect with" %>
         <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, prompt: "Choose a user" %>
         <%= form.submit "Start Chat", class: "journal-button", style: "margin-top: 10px;" %>
       <% end %>
