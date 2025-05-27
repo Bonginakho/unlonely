@@ -40,6 +40,7 @@
   position: fixed;
   z-index: 1;
   width: fit-content;
+  border-radius: 10px;
 }
 
 .fa-comment {
@@ -59,4 +60,19 @@
   right: 35px;
   position: fixed;
   z-index: 2;
+}
+
+.logo-and-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chat-content {
+  padding: 10px;
 }
