@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :journals, only: %I[index new create edit update show]
-  resources :reflections, only: %I[edit update]
-  resources :chat_messages, only: [:index, :create] do
-    member do
-      get 'with/:user_id', to: 'chat_messages#index', as: 'with_user'
+  resources :journals, only: [:index, :show, :edit, :update] do
+    collection do
+      post :create_chat_message
     end
   end
+
+  resources :reflections, only: %I[edit update]
+  # resources :chat_messages, only: [:index, :create] do
+  #   member do
+  #     get 'with/:user_id', to: 'chat_messages#index', as: 'with_user'
+  #   end
+  # end
 
 
   get "originstory", to: "pages#originstory"

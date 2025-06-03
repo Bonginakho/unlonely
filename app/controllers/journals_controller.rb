@@ -15,6 +15,21 @@ class JournalsController < ApplicationController
       ).order(:created_at)
 
       @chat_message = ChatMessage.new
+      respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "chat_box",
+          partial: "chat/chat_box",
+          locals: {
+            chat_messages: @chat_messages,
+            chat_partner: @chat_partner,
+            chat_message: @chat_message,
+            current_user: current_user
+          }
+        )
+      end
+      format.html # fallback for full page
+    end
     else
       @chat_partner = nil
       @chat_messages = []
@@ -40,6 +55,31 @@ class JournalsController < ApplicationController
     @journal = journal.new(journal_params)
     @journal.save
   end
+
+  def create_chat_message
+  @chat_message = current_user.sent_chat_messages.build(chat_message_params)
+
+  if @chat_message.save
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.append(
+          "chat_messages",
+          partial: "chat_messages/chat_message",
+          locals: { chat_message: @chat_message, current_user: current_user }
+        )
+      }
+      format.html { redirect_to journals_path(user_id: @chat_message.receiver_id) }
+    end
+  else
+    render partial: "chat/chat_box", status: :unprocessable_entity
+  end
+end
+
+private
+
+def chat_message_params
+  params.require(:chat_message).permit(:content, :receiver_id)
+end
 
   private
 

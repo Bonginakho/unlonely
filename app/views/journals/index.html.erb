@@ -264,7 +264,7 @@
 <div class="chat-bubble" id="chat-button">
   <i class="fa-solid fa-comment"></i>
 </div>
-<div class="chat-container" id="chat-box" style="display: none;">
+<div class="chat-container" id="chat-container"style="display: none;">
   <div class="logo-and-title">
     <%= image_tag "unlonely.png", class: "avatar-large", alt: "logo"%>
     <div class="title-text">
@@ -282,16 +282,16 @@
       </div>
       <div style="margin-top: 10px;">
         <%= turbo_frame_tag "new_chat_message" do %>
-          <%= simple_form_for @chat_message, url: chat_messages_path, data: { turbo: true }, html: { id: "new_chat_message_form" } do |f| %>
+          <%= simple_form_for @chat_message, url: create_chat_message_journals_path, data: { turbo: true }, html: { id: "new_chat_message_form" } do |f| %>
             <%= f.hidden_field :receiver_id, value: @chat_partner.id %>
             <%= f.input :content, label: false, input_html: { autocomplete: "off", placeholder: "Type your message...", style: 'width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;' } %>
             <%= f.button :submit, "Send", class: "journal-button", style: "margin-top: 5px;" %>
           <% end %>
-        <% end %>
+        <% end %>``
       </div>
     <% else %>
       <p> Speak your truth and allow others to speak theirs. </p>
-      <%= form_with url: chat_messages_path, method: :get, local: true do |form| %>
+      <%= form_with url: journals_path, method: :get,  data: { turbo_frame: "chat_box" } do |form| %>
         <%= form.label :user_id, "Choose someone to connect with" %>
         <%= form.collection_select :user_id, User.where.not(id: current_user.id), :id, :username, prompt: "Choose a user" %>
         <%= form.submit "Start Chat", class: "journal-button", style: "margin-top: 10px;" %>
