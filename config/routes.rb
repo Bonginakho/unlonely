@@ -8,13 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :reflections, only: %I[edit update]
-  # resources :chat_messages, only: [:index, :create] do
-  #   member do
-  #     get 'with/:user_id', to: 'chat_messages#index', as: 'with_user'
-  #   end
-  # end
-
-
   get "originstory", to: "pages#originstory"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

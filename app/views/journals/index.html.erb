@@ -261,7 +261,7 @@
   <% end %>
 <% end %>
 <!--start with chat messages at the bottom to see the layout-->
-<div class="chat-bubble" id="chat-button">
+<div class="chat-toggle-bubble" id="chat-button">
   <i class="fa-solid fa-comment"></i>
 </div>
 <div class="chat-container" id="chat-container"style="display: none;">
@@ -274,7 +274,7 @@
   </div>
   <div class="chat-content">
     <% if @chat_partner %>
-      <h2>Chat with <%= @chat_partner.username %></h2>
+      <h2 class= "chat-header"> Chat with <%= @chat_partner.username %></h2>
       <div id="chat_messages" style="max-height: 400px; overflow-y: auto; border: 2px solid #333; padding: 10px; border-radius: 10px;">
         <%= turbo_frame_tag "chat_messages" do %>
           <%= render @chat_messages %>
@@ -285,9 +285,11 @@
           <%= simple_form_for @chat_message, url: create_chat_message_journals_path, data: { turbo: true }, html: { id: "new_chat_message_form" } do |f| %>
             <%= f.hidden_field :receiver_id, value: @chat_partner.id %>
             <%= f.input :content, label: false, input_html: { autocomplete: "off", placeholder: "Type your message...", style: 'width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc;' } %>
-            <%= f.button :submit, "Send", class: "journal-button", style: "margin-top: 5px;" %>
+            <%= button_tag(type: "submit", class: "journal-button", style: "margin-top: 5px;") do %>
+              Send
+            <% end %>
           <% end %>
-        <% end %>``
+        <% end %>
       </div>
     <% else %>
       <p> Speak your truth and allow others to speak theirs. </p>

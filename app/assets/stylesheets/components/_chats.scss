@@ -8,20 +8,17 @@
     font-family: Arial, sans-serif;
     font-size: 14px;
     line-height: 1.4;
+    color:white;
   }
   #chat_messages .chat_message.sent {
-    background-color: #dcf8c6;
+    background-color: black;
     float: right;
   }
   #chat_messages .chat_message.received {
-    background-color: #fff;
+    background-color: grey;
     float: left;
-    border: 1px solid #ccc;
   }
-  .chat-container form label {
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
+
   form select {
     width: 100%;
     padding: 8px;
@@ -48,7 +45,7 @@
   color: white;
 
 }
-.chat-bubble {
+.chat-toggle-bubble {
   background-color: black;
   border-radius: 50%;
   padding: 15px;
@@ -75,4 +72,35 @@
 
 .chat-content {
   padding: 10px;
+}
+
+.chat-header {
+  font-size: 16px;
+  color: #555;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chat-bubble-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.chat-bubble-wrapper.from-me {
+  justify-content: flex-end;
+}
+
+.chat-bubble-wrapper.from-me .avatar {
+  order: 2;
+  margin-left: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
 }
