@@ -1,4 +1,13 @@
 
+.chat-container,
+.chat-message,
+.chat-text,
+.chat-timestamp,
+.chat-header,
+.chat-content {
+  font-family: $body-font;
+}
+
   #chat_messages .chat_message {
     padding: 8px 12px;
     margin-bottom: 8px;
@@ -9,15 +18,9 @@
     font-size: 14px;
     line-height: 1.4;
     color:white;
+    position: relative;
   }
-  #chat_messages .chat_message.sent {
-    background-color: black;
-    float: right;
-  }
-  #chat_messages .chat_message.received {
-    background-color: grey;
-    float: left;
-  }
+
 
   form select {
     width: 100%;
@@ -82,25 +85,95 @@
   text-align: center;
 }
 
-.chat-bubble-wrapper {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
-
-.chat-bubble-wrapper.from-me {
-  justify-content: flex-end;
-}
-
-.chat-bubble-wrapper.from-me .avatar {
-  order: 2;
-  margin-left: 8px;
-}
-
 .avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.chat-bubble-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 10px;
+  max-width: 100%;
+}
+
+.chat-bubble-wrapper.from-me {
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+
+.chat-bubble-wrapper.from-them {
+  align-self: flex-start;
+  margin-right: 1rem;
+}
+
+.chat-message {
+  position: relative;
+  max-width: 85%;
+  padding: 10px 14px;
+  width: auto;
+  white-space: normal;
+  word-wrap: break-word;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: white;
+}
+
+.chat-message p {
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.chat-message.from-me {
+  background-color: black;
+  color: white;
+  align-self: flex-end;
+  margin-left: auto;
+  margin-right: 0;
+
+}
+
+.chat-message.from-them {
+  background-color: white;
+  color: black;
+  align-self: flex-start;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.chat-text {
+  margin: 0;
+}
+
+.chat-timestamp {
+  display: block;
+  text-align: right;
+  font-size: 10px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.bubble-tail {
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.tail-left {
+  left: -8px;
+  border-top: 8px solid white;
+  border-right: 8px solid transparent;
+}
+
+.tail-right {
+  right: -8px;
+  border-top: 8px solid black;
+  border-left: 8px solid transparent;
 }

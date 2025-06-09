@@ -275,7 +275,8 @@
   <div class="chat-content">
     <% if @chat_partner %>
       <h2 class= "chat-header"> Chat with <%= @chat_partner.username %></h2>
-      <div id="chat_messages" style="max-height: 400px; overflow-y: auto; border: 2px solid #333; padding: 10px; border-radius: 10px;">
+      <div id="chat_messages">
+      <!--style="max-height: 400px; overflow-y: auto; border: 2px solid #333; padding: 10px; border-radius: 10px;"-->
         <%= turbo_frame_tag "chat_messages" do %>
           <%= render @chat_messages %>
         <% end %>
