@@ -4,8 +4,7 @@ document.addEventListener("turbo:load", () => {
     if (chatButton && chatContainer) {
     chatButton.addEventListener("click", (event) => {
       console.log(event);
-      const isHidden = chatContainer.style.display === "none" || chatContainer.style.display === "";
-      chatContainer.style.display = isHidden ? "block" : "none";
+      chatContainer.classList.toggle("hidden");
     });
   }
 });

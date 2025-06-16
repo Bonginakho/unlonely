@@ -1,6 +1,12 @@
+html, body {
+  overscroll-behavior: none;
+}
+
 .navbar-lewagon {
   text-align: right;
   background: white;
+  position: sticky;
+  top: 0;
 }
 
 .navbar-lewagon .navbar-collapse {
