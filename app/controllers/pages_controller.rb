@@ -4,4 +4,7 @@ class PagesController < ApplicationController
 
   def originstory
   end
+
+  def guide
+  end
 end

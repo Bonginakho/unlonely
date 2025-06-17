@@ -1,6 +1,0 @@
-<%# Partial for rendering a single chat message %>
-<div class=" container chat-message <%= 'from-me' if chat_message.user == current_user %>" style="margin-bottom: 10px; max-width: 60%; padding: 10px; border-radius: 15px; background-color: <%= chat_message.user == current_user ? '#DCF8C6' : '#FFFFFF' %>; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-  <strong style="font-weight: 600; color: #333;"><%= chat_message.user.username %>:</strong>
-  <p style="margin: 5px 0 0 0; font-size: 14px; color: #555;"><%= chat_message.content %></p>
-  <small style="font-size: 10px; color: #999; float: right;"><%= chat_message.created_at.strftime("%b %d, %H:%M") %></small>
-</div>

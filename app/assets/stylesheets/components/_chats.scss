@@ -1,62 +1,176 @@
 
-  #chat_messages .chat_message {
-    padding: 8px 12px;
-    margin-bottom: 8px;
+  .chat-container,
+  .chat-message,
+  .chat-text,
+  .chat-timestamp,
+  .chat-header,
+  .chat-content {
+    font-family: $body-font;
+  }
+
+    #chat_messages .chat_message {
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      border-radius: 15px;
+      max-width: 60%;
+      clear: both;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      color:white;
+      position: relative;
+    }
+
+
+    form select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+  .chat-container {
+    background-color: white;
+    color: black;
+    margin-left: 20px;
+    padding: 35px;
+    bottom: 35px;
+    right: 35px;
+    position: fixed;
+    z-index: 1;
+    width: fit-content;
+    border-radius: 10px;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fa-comment {
+    font-size: 50px;
+    cursor: pointer;
+    color: white;
+
+  }
+  .chat-toggle-bubble {
+    background-color: black;
+    border-radius: 50%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 35px;
+    right: 35px;
+    position: fixed;
+    z-index: 2;
+    margin: 4px;
+  }
+
+  .logo-and-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    position: sticky;
+    top:0;
+    flex-shrink: 0;
+  }
+
+  .chat-content {
+    padding: 20px;
+    min-height: 0;
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+
+  .chat-header {
+    font-size: 16px;
+    color: #555;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .chat-bubble-wrapper {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+
+  .chat-bubble-wrapper.from-me {
+    align-self: flex-start;
+    margin-left: 1rem;
+  }
+
+  .chat-bubble-wrapper.from-them {
+    align-self: flex-start;
+    margin-right: 1rem;
+  }
+
+  .chat-message {
+    position: relative;
+    padding: 10px 14px;
+    white-space: normal;
+    word-wrap: break-word;
     border-radius: 15px;
-    max-width: 60%;
-    clear: both;
-    font-family: Arial, sans-serif;
     font-size: 14px;
     line-height: 1.4;
-  }
-  #chat_messages .chat_message.sent {
-    background-color: #dcf8c6;
-    float: right;
-  }
-  #chat_messages .chat_message.received {
-    background-color: #fff;
-    float: left;
-    border: 1px solid #ccc;
-  }
-  .chat-container form label {
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  form select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
+    color: white;
+    width: 85%;
   }
 
-.chat-container {
-  // display: none;
-  background-color: white;
-  color: black;
-  margin-left: 20px;
-  padding: 20px;
-  bottom: 35px;
-  right: 35px;
-  position: fixed;
-  z-index: 1;
-  width: fit-content;
+  .chat-message p {
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+
+  .chat-message.from-me {
+    background-color: #2f3131;
+    color: white;
+    width: 80%;
+    margin-right: 8px;
+  }
+
+  .chat-message.from-them {
+    background-color: 	#f8f1e5;
+    color: black;
+  }
+
+  .chat-text {
+    margin: 0;
+  }
+
+  .chat-timestamp {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .hidden {
+  display: none;
 }
 
-.fa-comment {
-  font-size: 50px;
-  cursor: pointer;
-  color: white;
-
-}
-.chat-bubble {
-  background-color: black;
-  border-radius: 50%;
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  bottom: 35px;
-  right: 35px;
-  position: fixed;
-  z-index: 2;
+textarea.chat-input {
+  width: 100% !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  border: 5px solid black !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
 }

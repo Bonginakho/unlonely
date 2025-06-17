@@ -9,3 +9,4 @@
 //= link toggle_reflection.js
 //= link toggle_journal_form.js
 //= link originstory.css
+//= link toggle_chat.js
