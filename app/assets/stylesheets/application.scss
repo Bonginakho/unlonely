@@ -22,3 +22,7 @@
     font-size: 5.5rem;
     font-weight: 600;
   }
+
+.avatar[data-bs-toggle="dropdown"]::after {
+  display: none;  //hide the ugly blue arrow
+}
