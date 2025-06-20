@@ -1,10 +1,15 @@
 class JournalsController < ApplicationController
   before_action :set_journal, only: %I[show edit update]
 
-  def index
-    @journals = Journal.all
-    @ordered_journals = Journal.order(:id)
-    @grouped_journals = @ordered_journals.group_by(&:week)
+    def index
+      @journals_by_week = Journal.order(:week).index_by(&:week)
+      @weeks = @journals_by_week.keys.sort
+      @current_week = params[:week]&.to_i || @weeks.first #current week or revert to week 1
+      @journal = @journals_by_week[@current_week]
+      #navigation part in the view
+      current_index = @weeks.index(@current_week)
+      @has_previous = current_index && current_index > 0
+      has_next = current_index && current_index < @weeks.size - 1
 
     if params[:user_id].present?
       @chat_partner = User.find(params[:user_id])
@@ -35,6 +40,7 @@ class JournalsController < ApplicationController
       @chat_messages = []
     end
   end
+
 
   def show
   end
