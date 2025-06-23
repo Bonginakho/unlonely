@@ -1,3 +1,43 @@
+<%= stylesheet_link_tag "originstory" %>
+<%= stylesheet_link_tag "guide" %>
 <div class="container origin-story">
-  <h1> How to use the weekly reflection</h1>
+  <h1> How to use the workbook</h1>
+</div>
+<div class="container origin-body">
+  <div class="align-items-center">
+    <h3>
+      The Day 1 pages of clarity, process and alignment are to keep you grounded and inner-focused.
+      Our internal home often manifests itself, externally.
+      So whenever things come up whether for good or bad through relationships, work and experiences they are just pointing us, inwards.
+      Don’t get overwhelmed, they are simply a guide to kickstart each week.
+      If you feel you want to substitute any other daily practice in place of it, feel free.
+      This is your workbook, to use at your own pace and in a way that feels good to you.
+      It’s just you vs you, always.
+      <br>
+      <br>
+      <strong>All my love, The Zulu Scribe</strong>
+    </h3>
+    <% if user_signed_in? %>
+      <%= link_to "Back to journals",
+      journals_path,
+      class: "journal-button",
+      style: "display: inline-block; padding: 10px 20px;" %>
+    <% end %>
+  </div>
+</div>
+</div>
+<div class="container origin-body mt-3">
+  <div class="align-items-center">
+    <h3>
+      I am so excited to be a part of your un-lonely journey. Please share your weeks using the hashtag #un-lonelyproject if you feel the exercise resonates with you or helps you in some small or big way.
+      But no pressure,stay private if that better maintains your peace. Either way, I will be rooting for you every step of the way.
+      I love you. Your journey now begins x
+      <br>
+      <strong> Follow to connect</strong>
+    </h3>
+    <%= link_to "https://www.instagram.com/zuluscribe", target: "_blank", rel: "noopener noreferrer", class: "no-underline" do %>
+      <i class="fa-brands fa-instagram"></i>
+    <% end %>
+  </div>
+</div>
 </div>

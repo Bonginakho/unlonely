@@ -1,32 +1,37 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-      <div class="collapse navbar-collapse nav-bar-right" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item common-button">
-              <%= link_to "Home", "#", class: "nav-link" %>
-            </li>
-            <li class="nav-item common-button">
-              <%= link_to "Guide", "#", class: "nav-link" %>
-            </li>
-            <li class="nav-item dropdown">
-              <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= image_tag "unlonely.png", class: "avatar-large", alt: "dropdown menu" %>
-              </a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <%= link_to "The Origin Story", "/originstory", class: "dropdown-item" %>
-                <%= button_to "Log out", destroy_user_session_path,
-                method: :delete,
-                class: "dropdown-item btn-link",
-                form: { style: "display: inline" } %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item common-button">
-              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse nav-bar-right" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item common-button">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item common-button">
+            <%= link_to "Guide", "/guide", class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="avatar" id="navbarDropdown"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-turbo="false"
+              onclick="event.preventDefault()">
+              <%= image_tag "unlonely.png", class: "avatar-large", alt: "dropdown menu" %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "The Origin Story", "/originstory", class: "dropdown-item" %>
+              <%= button_to "Log out", destroy_user_session_path,
+      method: :delete,
+      class: "dropdown-item btn-link",
+      form: { style: "display: inline" } %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item common-button">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
+</div>
