@@ -26,3 +26,19 @@
 .avatar[data-bs-toggle="dropdown"]::after {
   display: none;  //hide the ugly blue arrow
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}

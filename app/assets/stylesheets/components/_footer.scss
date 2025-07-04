@@ -8,8 +8,8 @@
   display: flex;
   padding: 15px;
 }
-.socials i,
-.socials img {
+.icon-row i,
+.icon-row img  {
   width: 45px;
   height: 45px;
   font-size: 45px;
@@ -23,16 +23,6 @@
 
 .body {
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
 }
 
 .footer-unlonely .logo,
@@ -41,11 +31,12 @@ html, body {
 }
 
 .socials {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  text-align: center;
 }
 
-.footer-unlonely {
-  
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
