@@ -49,14 +49,16 @@ class JournalsController < ApplicationController
   def edit
   end
 
-  def update
-    @journal.update(journals_params)
-    if @journal.update(journals_params)
-      redirect_to journals_path
-    else
-      render status: :unprocessable_entity
-    end
+def update
+  new_text = journals_params[:content]
+  combined_content = [@journal.content, new_text].compact.join("\n\n")
+
+  if @journal.update(content: combined_content)
+    redirect_to journals_path
+  else
+    render status: :unprocessable_entity
   end
+end
 
   def create
     @journal = journal.new(journal_params)

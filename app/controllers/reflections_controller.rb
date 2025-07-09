@@ -5,13 +5,14 @@ class ReflectionsController < ApplicationController
   end
 
   def update
-    @reflection.update(reflections_params)
-    if @reflection.update(reflections_params)
+    new_text = reflections_params[:writing]
+    combined_writing = [@reflection.writing, new_text].compact.join("\n\n")
+
+    if @reflection.update(writing: combined_writing)
       redirect_to journals_path
     else
       render status: :unprocessable_entity
     end
-
   end
 
   def set_reflection
