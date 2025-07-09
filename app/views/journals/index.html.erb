@@ -206,52 +206,74 @@
     loadEntriesForSection(section);
   }
 </script>
-<% @ordered_journals.group_by(&:week).each_with_index do |(week, journals), week_idx| %>
-  <div class="container" id="journal-heading">
-    <h1><%= week %></h1>
-  </div>
-  <% journals.each_with_index do |journal, journal_idx| %>
-    <div class="text-container">
-      <!-- Button that triggers the first modal -->
-      <button class="journal-button" style="margin-left: 0; margin-bottom: 4px" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Weekly Ritual</button>
-      <p><%= journal.prompt %></p>
-      <% if week_idx.zero? && journal_idx.zero? %>
-        <p>Go through the week and tick the box for each day you say hello to a stranger.</p>
-        <div class="day-checklist">
-          <form>
-            <p><input type="checkbox" id="monday"   name="days" class="check-box"><label for="Monday">Monday</label></p>
-            <p><input type="checkbox" id="tuesday"  name="days" class="check-box"><label for="Tuesday">Tuesday</label></p>
-            <p><input type="checkbox" id="wednesday"name="days" class="check-box"><label for="Wednesday">Wednesday</label></p>
-            <p><input type="checkbox" id="thursday" name="days" class="check-box"><label for="Thursday">Thursday</label></p>
-            <p><input type="checkbox" id="friday"   name="days" class="check-box"><label for="Friday">Friday</label></p>
-            <p><input type="checkbox" id="saturday" name="days" class="check-box"><label for="Saturday">Saturday</label></p>
-            <p><input type="checkbox" id="sunday"   name="days" class="check-box"><label for="Sunday">Sunday</label></p>
-          </form>
-        </div>
+<div class="container" id="journal-heading">
+  <h1> <%= @journal.week %></h1>
+</div>
+<% if @journal %>
+  <div class="text-container">
+    <!-- Button that triggers the first modal -->
+    <button class="journal-button" style="margin-left: 0; margin-bottom: 4px" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Weekly Ritual</button>
+    <p><%= @journal.prompt %></p>
+    <% if @current_week == 1 %>
+      <p>Go through the week and tick the box for each day you say hello to a stranger.</p>
+      <div class="day-checklist">
+        <form>
+          <p><input type="checkbox" id="monday"   name="days" class="check-box"><label for="Monday">Monday</label></p>
+          <p><input type="checkbox" id="tuesday"  name="days" class="check-box"><label for="Tuesday">Tuesday</label></p>
+          <p><input type="checkbox" id="wednesday"name="days" class="check-box"><label for="Wednesday">Wednesday</label></p>
+          <p><input type="checkbox" id="thursday" name="days" class="check-box"><label for="Thursday">Thursday</label></p>
+          <p><input type="checkbox" id="friday"   name="days" class="check-box"><label for="Friday">Friday</label></p>
+          <p><input type="checkbox" id="saturday" name="days" class="check-box"><label for="Saturday">Saturday</label></p>
+          <p><input type="checkbox" id="sunday"   name="days" class="check-box"><label for="Sunday">Sunday</label></p>
+        </form>
+      </div>
+    <% end %>
+    <!-- write section-->
+    <button class="toggle-form-button journal-button margin-top">Write</button>
+    <div class="journal-form-container" style="display: none">
+      <%= simple_form_for(@journal) do |j| %>
+        <%= j.input :content, label: false, input_html: { value: "", class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' } %>
+        <%= j.submit "Save", class: "journal-button" %>
       <% end %>
-      <button class="toggle-form-button journal-button margin-top">Write</button>
-      <div class="journal-form-container" style="display: none">
-        <%= simple_form_for(journal) do |j| %>
-          <%= j.input :content, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' } %>
-          <%= j.submit "Save", class: "journal-button" %>
-        <% end %>
-      </div>
-      <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px">Reflections</button>
-      <div class="container" style="margin-left: 0; margin-bottom: 4px; display: none;">
-        <%= journal.reflection.title %>
-        <%= simple_form_for(journal.reflection) do |j| %>
-          <%= j.input :writing, label: false, input_html: { class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' } %>
-          <%= j.submit "Save", class: "journal-button" %>
-        <% end %>
-      </div>
     </div>
+    <% if @journal.content.present?  %>
+      <div class="journal-user-text">
+        <h4> Your Thoughts </h4>
+        <p><%= simple_format(@journal.content) %></p>
+      </div>
+    <% end %>
+    <!-- Reflections -->
+    <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px">Reflections</button>
+    <div class="container" style="margin-left: 0; margin-bottom: 4px; display: none;">
+      <%= @journal.reflection.title %>
+      <%= simple_form_for(@journal.reflection) do |j| %>
+        <%= j.input :writing, label: false, input_html: { value: "", class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' } %>
+        <%= j.submit "Save", class: "journal-button" %>
+      <% end %>
+    </div>
+    <% if @journal.reflection.writing.present? %>
+      <div class="reflection-content">
+        <h4>Your Reflection </h4>
+        <p><%= simple_format(@journal.reflection.writing) %></p>
+      <% end %>
+    </div>
+    <div class="week-navigation">
+      <% if @has_previous %>
+        <%= link_to "Previous Week", journals_path(week: @weeks[@weeks.index(@current_week) - 1]), class: "journal-button" %>
+      <% end %>
+      <% if @has_next %>
+        <%= link_to "Next Week", journals_path(week: @weeks[@weeks.index(@current_week) + 1]), class: "journal-button" %>
+      <% end %>
+    </div>
+  <% else  %>
+    <p>No journal found for this week.</p>
   <% end %>
-<% end %>
+</div>
 <!--start with chat messages at the bottom to see the layout-->
 <div class="chat-toggle-bubble" id="chat-button">
   <i class="fa-solid fa-comment"></i>
 </div>
-<div class="chat-container" id="chat-container" class="hidden">
+<div class="chat-container hidden" id="chat-container">
   <div class="logo-and-title">
     <%= image_tag "unlonely.png", class: "avatar-large", alt: "logo"%>
     <div class="title-text">

@@ -1,0 +1,42 @@
+.footer-unlonely {
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  display: flex;
+  padding: 15px;
+  margin-top: 25px;
+}
+.icon-row i,
+.icon-row img  {
+  width: 45px;
+  height: 45px;
+  font-size: 45px;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  object-fit: cover;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.body {
+  background-color: white;
+}
+
+.footer-unlonely .logo,
+.footer-unlonely .socials {
+  flex: 1;
+}
+
+.socials {
+  text-align: center;
+}
+
+
+.icon-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

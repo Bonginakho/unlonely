@@ -1,10 +1,16 @@
 class JournalsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_journal, only: %I[show edit update]
 
-  def index
-    @journals = Journal.all
-    @ordered_journals = Journal.order(:id)
-    @grouped_journals = @ordered_journals.group_by(&:week)
+    def index
+      @journals_by_week = Journal.order(:week_number).index_by(&:week_number)
+      @weeks = @journals_by_week.keys.sort
+      @current_week = params[:week]&.to_i || @weeks.first
+      @journal = @journals_by_week[@current_week]
+      #navigation part in the view
+      current_index = @weeks.index(@current_week)
+      @has_previous = current_index && current_index > 0
+      @has_next = current_index && current_index < @weeks.size - 1
 
     if params[:user_id].present?
       @chat_partner = User.find(params[:user_id])
@@ -36,20 +42,23 @@ class JournalsController < ApplicationController
     end
   end
 
+
   def show
   end
 
   def edit
   end
 
-  def update
-    @journal.update(journals_params)
-    if @journal.update(journals_params)
-      redirect_to journals_path
-    else
-      render status: :unprocessable_entity
-    end
+def update
+  new_text = journals_params[:content]
+  combined_content = [@journal.content, new_text].compact.join("\n\n")
+
+  if @journal.update(content: combined_content)
+    redirect_to journals_path
+  else
+    render status: :unprocessable_entity
   end
+end
 
   def create
     @journal = journal.new(journal_params)
