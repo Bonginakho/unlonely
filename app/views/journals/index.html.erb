@@ -255,8 +255,8 @@
       <div class="reflection-content">
         <h4>Your Reflection </h4>
         <p><%= simple_format(@journal.reflection.writing) %></p>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <div class="week-navigation">
       <% if @has_previous %>
         <%= link_to "Previous Week", journals_path(week: @weeks[@weeks.index(@current_week) - 1]), class: "journal-button" %>
@@ -268,6 +268,7 @@
   <% else  %>
     <p>No journal found for this week.</p>
   <% end %>
+  </div>
 </div>
 <!--start with chat messages at the bottom to see the layout-->
 <div class="chat-toggle-bubble" id="chat-button">
