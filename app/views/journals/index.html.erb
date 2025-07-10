@@ -237,10 +237,12 @@
       <% end %>
     </div>
     <% if @journal.content.present?  %>
-      <div class="journal-user-text">
-        <h4> Your Thoughts </h4>
-        <p><%= simple_format(@journal.content) %></p>
-      </div>
+      <details class="entry-toggle">
+        <summary class="journal-button" style="margin-left: 0; margin-bottom: 4px">Show My Entries</summary>
+        <div class="journal-user-text">
+          <p><%= simple_format(@journal.content) %></p>
+        </div>
+      </details>
     <% end %>
     <!-- Reflections -->
     <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px">Reflections</button>
@@ -252,22 +254,24 @@
       <% end %>
     </div>
     <% if @journal.reflection.writing.present? %>
-      <div class="reflection-content">
-        <h4>Your Reflection </h4>
-        <p><%= simple_format(@journal.reflection.writing) %></p>
+      <details class="reflection-toggle">
+        <summary class="journal-button">Show My Reflection</summary>
+        <div class="reflection-content">
+          <p><%= simple_format(@journal.reflection.writing) %></p>
+        </div>
+        </details>
+      <% end %>
+      <div class="week-navigation">
+        <% if @has_previous %>
+          <%= link_to "Previous Week", journals_path(week: @weeks[@weeks.index(@current_week) - 1]), class: "journal-button" %>
+        <% end %>
+        <% if @has_next %>
+          <%= link_to "Next Week", journals_path(week: @weeks[@weeks.index(@current_week) + 1]), class: "journal-button" %>
+        <% end %>
       </div>
+    <% else  %>
+      <p>No journal found for this week.</p>
     <% end %>
-    <div class="week-navigation">
-      <% if @has_previous %>
-        <%= link_to "Previous Week", journals_path(week: @weeks[@weeks.index(@current_week) - 1]), class: "journal-button" %>
-      <% end %>
-      <% if @has_next %>
-        <%= link_to "Next Week", journals_path(week: @weeks[@weeks.index(@current_week) + 1]), class: "journal-button" %>
-      <% end %>
-    </div>
-  <% else  %>
-    <p>No journal found for this week.</p>
-  <% end %>
   </div>
 </div>
 <!--start with chat messages at the bottom to see the layout-->
