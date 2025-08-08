@@ -1,5 +1,5 @@
 class ReflectionsController < ApplicationController
-  before_action :set_reflection, only: %i[edit update]
+  before_action :set_reflection, only: %i[edit update destroy]
 
   def edit
   end
@@ -14,6 +14,11 @@ class ReflectionsController < ApplicationController
       render status: :unprocessable_entity
     end
   end
+
+  def destroy
+  @reflection.destroy
+  redirect_to journals_path, notice: "Reflection deleted."
+end
 
   def set_reflection
     @reflection = Reflection.find(params[:id])

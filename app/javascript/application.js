@@ -3,6 +3,16 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+import "journal_options"
+import "controllers"
+import "application"
+import "custom"
+import "popper"
+import "toggle_reflection"
+import "toggle_journal_form"
+import "toggle_chat"
+import "journal_options"
+
 document.addEventListener("turbo:load", () => {
   document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach((el) => {
     // Force re-attach dropdown by removing old instance if present
@@ -19,4 +29,3 @@ document.addEventListener("turbo:load", () => {
     });
   });
 });
-

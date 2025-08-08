@@ -1,6 +1,6 @@
 class JournalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_journal, only: %I[show edit update]
+  before_action :set_journal, only: %I[show edit update destroy]
 
     def index
       @journals_by_week = Journal.order(:week_number).index_by(&:week_number)
@@ -60,6 +60,7 @@ def update
   end
 end
 
+
   def create
     @journal = journal.new(journal_params)
     @journal.save
@@ -82,6 +83,11 @@ end
   else
     render partial: "chat/chat_box", status: :unprocessable_entity
   end
+end
+
+def destroy
+  @journal.destroy
+  redirect_to journals_path, notice: "Journal entry deleted."
 end
 
 private

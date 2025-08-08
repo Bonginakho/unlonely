@@ -26,7 +26,8 @@
   display: block;
   font-size: larger;
   margin: auto;
-   padding: 5px 10px;
+  padding: 5px 10px;
+  display: inline-block;
 
 }
 
@@ -44,51 +45,7 @@
   }
 }
 
-.entry-toggle summary {
-  cursor: pointer;
-  padding: 10px;
-  background: #1e1e1e;
-  color: white;
-  border-radius: 8px;
-  font-weight: bold;
-  margin-top: 10px;
-  list-style: none; /* remove native arrow */
-}
-
-.entry-toggle {
- margin-bottom: 20px;
-}
-.entry-toggle summary.journal-button {
-  display: inline-block;
-}
-
-.journal-user-text {
-  background: #f9f9f9;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.reflection-toggle summary.journal-button {
-  display: inline-block;
-  width: auto;
-  list-style: none;
-  background-color: #333;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 12px;
-}
-
-.reflection-content {
-  width: 100%;
-  background: #f1f1f1;
-  border: 2px solid #bbb;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 10px;
+.parent-container {
+  display: flex;
+  justify-content: center;
 }
