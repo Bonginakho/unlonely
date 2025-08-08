@@ -229,7 +229,9 @@
       </div>
     <% end %>
     <!-- write section-->
-    <button class="toggle-form-button journal-button margin-top">Write</button>
+    <div class="parent-container">
+      <button class="toggle-form-button journal-button margin-top margin-bottom">Write</button>
+    </div>
     <div class="journal-form-container" style="display: none">
       <%= simple_form_for(@journal) do |j| %>
         <%= j.input :content, label: false, input_html: { value: "", class: 'form-control text-area', style: 'margin: 20px 0; padding: 10px; border: 4px solid black; border-radius: 10px;' } %>
@@ -237,13 +239,15 @@
       <% end %>
     </div>
     <% if @journal.content.present?  %>
-      <div class="journal-user-text">
-        <h4> Your Thoughts </h4>
-        <p><%= simple_format(@journal.content) %></p>
-      </div>
+      <details class="entry-toggle message-block">
+        <summary class="journal-button" style="margin-top: 8px">Show My Entries</summary>
+        <div class="journal-user-text" id="journal-content" data-journal-id="<%= @journal.id %>">
+          <p><%= simple_format(@journal.content) %></p>
+        </div>
+      </details>
     <% end %>
     <!-- Reflections -->
-    <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 4px">Reflections</button>
+    <button class="journal-button reflection-container" style="margin-left: 0; margin-bottom: 8px; margin-top: 8px">Reflections</button>
     <div class="container" style="margin-left: 0; margin-bottom: 4px; display: none;">
       <%= @journal.reflection.title %>
       <%= simple_form_for(@journal.reflection) do |j| %>
@@ -252,10 +256,12 @@
       <% end %>
     </div>
     <% if @journal.reflection.writing.present? %>
-      <div class="reflection-content">
-        <h4>Your Reflection </h4>
-        <p><%= simple_format(@journal.reflection.writing) %></p>
-      </div>
+      <details class="reflection-toggle message-block">
+        <summary class="journal-button">Show My Reflection</summary>
+        <div class="reflection-content message-content">
+          <p><%= simple_format(@journal.reflection.writing) %></p>
+        </div>
+      </details>
     <% end %>
     <div class="week-navigation">
       <% if @has_previous %>
@@ -268,7 +274,7 @@
   <% else  %>
     <p>No journal found for this week.</p>
   <% end %>
-  </div>
+</div>
 </div>
 <!--start with chat messages at the bottom to see the layout-->
 <div class="chat-toggle-bubble" id="chat-button">

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :journals, only: [:index, :show, :edit, :update] do
+  resources :journals, only: %i[index show edit update destroy] do
     collection do
       post :create_chat_message
     end
   end
 
-  resources :reflections, only: %I[edit update]
+  resources :reflections, only: %I[edit update destroy]
   get "originstory", to: "pages#originstory"
   get "guide", to: "pages#guide"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
